@@ -10,27 +10,28 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --gold:#C9A96E;
-  --gold-light:#E8D5A3;
+  --gold:#B8862A;
+  --gold-light:#9A6E1A;
   --gold-pale:#F5EDD8;
-  --gold-dim:#7A6340;
-  --gold-deep:#4A3B22;
-  --bg:#0E0C09;
-  --bg2:#181410;
-  --bg3:#231E16;
-  --text:#D4C4A0;
-  --text-dim:#7A6F5A;
+  --gold-dim:#A07838;
+  --gold-deep:#C9A96E;
+  --bg:#F7F0E6;
+  --bg2:#EFE6D6;
+  --bg3:#E8DDD0;
+  --text:#2C2318;
+  --text-dim:#7A6340;
 }
 
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',Georgia,serif;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,#FDF8F0 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 80% 80%,#EDE0CC 0%,transparent 60%);pointer-events:none;z-index:0}
 
 /* ── starfield ── */
 .stars{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .star{position:absolute;border-radius:50%;background:var(--gold);animation:twinkle var(--d,3s) ease-in-out infinite var(--delay,0s)}
-@keyframes twinkle{0%,100%{opacity:.08;transform:scale(1)}50%{opacity:var(--peak,.4);transform:scale(1.3)}}
+@keyframes twinkle{0%,100%{opacity:.04;transform:scale(1)}50%{opacity:var(--peak,.18);transform:scale(1.3)}}
 
 /* ── vignette ── */
-.vignette{position:fixed;inset:0;background:radial-gradient(ellipse 75% 75% at 50% 50%,transparent 35%,rgba(10,8,5,.8) 100%);pointer-events:none;z-index:0}
+.vignette{position:fixed;inset:0;background:radial-gradient(ellipse 75% 75% at 50% 50%,transparent 35%,rgba(220,200,170,.25) 100%);pointer-events:none;z-index:0}
 
 .page{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:56px 24px 80px}
 
@@ -54,7 +55,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Cormor
 .tick{position:absolute;left:50%;width:1px;transform-origin:0 60px;background:var(--gold-dim)}
 
 /* К4 center — THIS rotates */
-.k4-rotor{position:absolute;inset:28px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#2A2016 0%,#0E0C09 100%);display:flex;align-items:center;justify-content:center;animation:rotateCW 18s linear infinite;cursor:default}
+.k4-rotor{position:absolute;inset:28px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#F0E8D8 0%,#E0D0BC 100%);display:flex;align-items:center;justify-content:center;animation:rotateCW 18s linear infinite;cursor:default;box-shadow:0 2px 12px rgba(180,140,80,.15)}
 .k4-rotor:hover{animation-play-state:paused}
 
 /* The К and 4 are COUNTER-rotated so they always read upright */
@@ -71,7 +72,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Cormor
 
 /* ════════════════════ TAGLINE ════════════════════ */
 .tagline-wrap{text-align:center;margin-bottom:16px;animation:fadeUp 1.2s ease both;animation-delay:.15s}
-.tagline{font-size:clamp(26px,5vw,40px);font-weight:300;font-style:italic;color:var(--gold-light);line-height:1.25;letter-spacing:.01em}
+.tagline{font-size:clamp(26px,5vw,40px);font-weight:300;font-style:italic;color:#5A4020;line-height:1.25;letter-spacing:.01em}
 .tagline em{font-style:normal;font-weight:500;color:var(--gold)}
 .subtitle{font-size:15px;font-weight:300;color:var(--text-dim);letter-spacing:.07em;text-align:center;line-height:1.8;max-width:380px;animation:fadeIn 1.5s ease both;animation-delay:.3s}
 
@@ -84,7 +85,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Cormor
 .oracle-section{width:100%;max-width:520px;animation:fadeUp 1.2s ease both;animation-delay:.5s}
 
 .oracle-instruction{text-align:center;padding:44px 20px 48px;position:relative}
-.inst-line1{font-size:clamp(20px,3.5vw,27px);font-weight:300;font-style:italic;color:var(--text-dim);letter-spacing:.03em;margin-bottom:24px}
+.inst-line1{font-size:clamp(20px,3.5vw,27px);font-weight:300;font-style:italic;color:#8A7050;letter-spacing:.03em;margin-bottom:24px}
 .inst-dots{display:flex;justify-content:center;gap:10px}
 .inst-dots span{width:3px;height:3px;border-radius:50%;background:var(--gold-dim);animation:dotPulse 1.8s ease-in-out infinite}
 .inst-dots span:nth-child(2){animation-delay:.3s}
@@ -93,14 +94,14 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Cormor
 
 @keyframes dotPulse{0%,100%{opacity:.2;transform:scale(1)}50%{opacity:.75;transform:scale(1.5)}}
 
-.reveal-btn{display:block;width:100%;padding:18px 32px;background:transparent;border:.5px solid var(--gold-dim);color:var(--gold);font-family:'Cormorant SC',serif;font-size:12px;font-weight:400;letter-spacing:.38em;cursor:pointer;transition:all .4s;position:relative;overflow:hidden}
-.reveal-btn::before{content:'';position:absolute;inset:0;background:rgba(201,169,110,.07);transform:scaleX(0);transform-origin:left;transition:transform .45s ease}
+.reveal-btn{display:block;width:100%;padding:18px 32px;background:transparent;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Cormorant SC',serif;font-size:12px;font-weight:400;letter-spacing:.38em;cursor:pointer;transition:all .4s;position:relative;overflow:hidden}
+.reveal-btn::before{content:'';position:absolute;inset:0;background:rgba(180,140,80,.08);transform:scaleX(0);transform-origin:left;transition:transform .45s ease}
 .reveal-btn:hover::before{transform:scaleX(1)}
 .reveal-btn:hover{border-color:var(--gold);color:var(--gold-light)}
 .reveal-btn:active{transform:scale(.99)}
 
 /* ── loading spinner ── */
-.loading-ring{display:none;width:44px;height:44px;border:.5px solid rgba(201,169,110,.15);border-top-color:var(--gold);border-radius:50%;animation:spinRing .85s linear infinite;margin:48px auto}
+.loading-ring{display:none;width:44px;height:44px;border:.5px solid rgba(180,140,80,.2);border-top-color:var(--gold);border-radius:50%;animation:spinRing .85s linear infinite;margin:48px auto}
 .loading-ring.show{display:block}
 @keyframes spinRing{to{transform:rotate(360deg)}}
 
@@ -118,11 +119,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Cormor
 .card-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 
 /* BACK side – shown first */
-.card-back{background:var(--bg3);display:flex;align-items:center;justify-content:center;border:.5px solid var(--gold-deep)}
+.card-back{background:var(--bg3);display:flex;align-items:center;justify-content:center;border:.5px solid var(--gold-deep);box-shadow:0 4px 24px rgba(180,140,80,.12)}
 .card-back-inner{display:flex;flex-direction:column;align-items:center;gap:16px}
-.card-back-k{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:300;font-style:italic;color:var(--gold-deep);line-height:1;opacity:.6}
-.card-back-line{width:40px;height:.5px;background:var(--gold-deep)}
-.card-back-label{font-family:'Cormorant SC',serif;font-size:9px;letter-spacing:.35em;color:var(--gold-dim);opacity:.5}
+.card-back-k{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:300;font-style:italic;color:var(--gold);line-height:1;opacity:.7}
+.card-back-line{width:40px;height:.5px;background:var(--gold-dim)}
+.card-back-label{font-family:'Cormorant SC',serif;font-size:9px;letter-spacing:.35em;color:var(--gold-dim);opacity:.7}
 
 /* FRONT side – flipped to reveal */
 .card-front{transform:rotateY(180deg);overflow:hidden;border:.5px solid rgba(201,169,110,.3);position:relative}
@@ -137,7 +138,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Cormor
 .zoom-hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'Cormorant SC',serif;font-size:9px;letter-spacing:.25em;color:rgba(201,169,110,.6);background:rgba(14,12,9,.7);padding:4px 10px;pointer-events:none;opacity:0;transition:opacity .3s;white-space:nowrap}
 .card-scene:hover .zoom-hint{opacity:1}
 
-.result-caption{font-size:clamp(18px,3.5vw,24px);font-weight:300;font-style:italic;color:var(--gold-light);text-align:center;letter-spacing:.04em;line-height:1.4;margin-bottom:6px}
+.result-caption{font-size:clamp(18px,3.5vw,24px);font-weight:300;font-style:italic;color:#5A4020;text-align:center;letter-spacing:.04em;line-height:1.4;margin-bottom:6px}
 .result-caption strong{font-style:normal;font-weight:500;color:var(--gold)}
 .result-sub{font-family:'Cormorant SC',serif;font-size:10px;letter-spacing:.32em;color:var(--gold-dim);margin-bottom:36px}
 
@@ -146,15 +147,15 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Cormor
 .again-btn:hover{color:var(--gold)}
 
 /* ════════════════════ LIGHTBOX ════════════════════ */
-.lightbox{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;background:rgba(10,8,5,.92);cursor:zoom-out}
+.lightbox{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;background:rgba(240,230,215,.95);cursor:zoom-out}
 .lightbox.open{display:flex;animation:fadeIn .25s ease both}
-.lightbox img{max-width:92vw;max-height:90vh;object-fit:contain;border:.5px solid rgba(201,169,110,.2);box-shadow:0 0 80px rgba(0,0,0,.8);animation:lbZoom .3s cubic-bezier(.22,1,.36,1) both}
+.lightbox img{max-width:92vw;max-height:90vh;object-fit:contain;border:.5px solid rgba(180,140,80,.3);box-shadow:0 0 80px rgba(180,140,80,.15);animation:lbZoom .3s cubic-bezier(.22,1,.36,1) both}
 .lb-close{position:absolute;top:20px;right:24px;font-family:'Cormorant SC',serif;font-size:11px;letter-spacing:.3em;color:var(--gold-dim);cursor:pointer;background:none;border:none;padding:8px}
 .lb-close:hover{color:var(--gold)}
 @keyframes lbZoom{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:scale(1)}}
 
 /* ════════════════════ ABOUT ════════════════════ */
-.about-section{width:100%;max-width:480px;margin:72px auto 0;padding-top:44px;border-top:.5px solid rgba(201,169,110,.1);animation:fadeIn 1.8s ease both;animation-delay:.8s}
+.about-section{width:100%;max-width:480px;margin:72px auto 0;padding-top:44px;border-top:.5px solid rgba(180,140,80,.2);animation:fadeIn 1.8s ease both;animation-delay:.8s}
 .about-label{font-family:'Cormorant SC',serif;font-size:10px;letter-spacing:.42em;color:var(--gold-dim);text-align:center;margin-bottom:20px}
 .about-text{font-size:15px;font-weight:300;color:var(--text-dim);line-height:1.95;text-align:center;font-style:italic;letter-spacing:.02em}
 .about-text em{font-style:normal;color:rgba(201,169,110,.55)}
@@ -236,7 +237,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Cormor
       <p class="inst-line2">Задумай номер строки</p>
     </div>
     <button class="reveal-btn" id="revealBtn" onclick="revealSign()">
-      Как будешь готова — открывай свой знак
+      Как будешь готова — нажимай, чтобы узнать свой знак
     </button>
   </div>
 
