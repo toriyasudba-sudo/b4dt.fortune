@@ -94,7 +94,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 @keyframes dotPulse{0%,100%{opacity:.2;transform:scale(1)}50%{opacity:.75;transform:scale(1.5)}}
 
-.reveal-btn{display:block;width:100%;padding:18px 32px;background:transparent;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Cormorant SC',serif;font-size:12px;font-weight:400;letter-spacing:.38em;cursor:pointer;transition:all .4s;position:relative;overflow:hidden}
+.reveal-btn{display:block;width:100%;padding:20px 32px;background:transparent;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;font-weight:600;font-style:italic;letter-spacing:.06em;cursor:pointer;transition:all .4s;position:relative;overflow:hidden;line-height:1.4}
 .reveal-btn::before{content:'';position:absolute;inset:0;background:rgba(180,140,80,.08);transform:scaleX(0);transform-origin:left;transition:transform .45s ease}
 .reveal-btn:hover::before{transform:scaleX(1)}
 .reveal-btn:hover{border-color:var(--gold);color:var(--gold-light)}
@@ -169,6 +169,108 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
+/* ════════════════════ GIFT BANNER ════════════════════ */
+.gift-banner{
+  width:100%;
+  max-width:520px;
+  margin-bottom:28px;
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  gap:0;
+}
+.gift-banner.visible{
+  display:flex;
+  animation:fadeUp .9s cubic-bezier(.22,1,.36,1) both;
+}
+.gift-banner-inner{
+  width:100%;
+  padding:22px 28px 20px;
+  background:linear-gradient(135deg,rgba(245,237,216,.95) 0%,rgba(232,221,200,.95) 100%);
+  border:.5px solid var(--gold-deep);
+  box-shadow:0 4px 24px rgba(180,140,80,.13);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.gift-banner-inner::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(255,248,230,.6) 0%,transparent 70%);
+  pointer-events:none;
+}
+.gift-icon{
+  font-size:22px;
+  display:block;
+  margin-bottom:8px;
+  opacity:.85;
+}
+.gift-text{
+  font-size:clamp(14px,2.8vw,17px);
+  font-weight:300;
+  font-style:italic;
+  color:#5A4020;
+  line-height:1.55;
+  letter-spacing:.02em;
+  position:relative;
+  z-index:1;
+}
+.gift-text strong{
+  font-style:normal;
+  font-weight:500;
+  color:var(--gold);
+}
+.gift-link{
+  display:inline-block;
+  margin-top:16px;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:15px;
+  font-weight:600;
+  font-style:italic;
+  letter-spacing:.06em;
+  color:#fff;
+  text-decoration:none;
+  background:var(--gold);
+  padding:10px 24px;
+  border:.5px solid var(--gold-deep);
+  box-shadow:0 2px 12px rgba(180,140,80,.3);
+  transition:background .3s, box-shadow .3s;
+  position:relative;
+  z-index:1;
+}
+.gift-link:hover{background:var(--gold-light);box-shadow:0 4px 18px rgba(180,140,80,.45)}
+.gift-arrow{
+  margin-top:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-family:'Cormorant SC',serif;
+  font-size:9px;
+  letter-spacing:.38em;
+  color:var(--gold-dim);
+  position:relative;
+  z-index:1;
+}
+.gift-arrow span{
+  display:inline-block;
+  animation:arrowBounce 1.6s ease-in-out infinite;
+}
+@keyframes arrowBounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(4px)}
+}
+/* corner ornaments */
+.gift-banner-inner::after{
+  content:'';
+  position:absolute;
+  top:7px;right:7px;
+  width:12px;height:12px;
+  border-top:.5px solid rgba(201,169,110,.45);
+  border-right:.5px solid rgba(201,169,110,.45);
+}
+
 /* ── mobile ── */
 @media(max-width:480px){
   .page{padding:36px 16px 60px}
@@ -237,7 +339,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
       <p class="inst-line2">Задумай номер строки</p>
     </div>
     <button class="reveal-btn" id="revealBtn" onclick="revealSign()">
-      Как будешь готова — нажимай, чтобы узнать свой знак
+      Как будешь готова — нажимай, чтобы узнать своё послание
     </button>
   </div>
 
@@ -247,6 +349,18 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <!-- ── Result ── -->
   <div class="result-section" id="resultSection">
     <div class="result-eyebrow">Твой знак</div>
+
+    <!-- Gift Banner – appears after card flips -->
+    <div class="gift-banner" id="giftBanner">
+      <div class="gift-banner-inner">
+        <span class="gift-icon">✦</span>
+        <p class="gift-text">
+          Ты можешь получить <strong>подарок от этого автора</strong> —<br>
+          отправь скриншот своей страницы предсказания сюда
+        </p>
+        <a href="https://6max.ru/nikulina" target="_blank" class="gift-link">Отправить скриншот →</a>
+      </div>
+    </div>
 
     <!-- Card with flip animation -->
     <div class="card-scene" id="cardScene" onclick="flipAndZoom()">
@@ -340,6 +454,9 @@ function revealSign(){
   document.getElementById('loadingRing').classList.add('show');
   document.getElementById('resultSection').classList.remove('visible');
 
+  // Hide oracle instruction block
+  document.querySelector('.oracle-instruction').style.display = 'none';
+
   setTimeout(() => {
     document.getElementById('loadingRing').classList.remove('show');
 
@@ -357,9 +474,14 @@ function revealSign(){
     btn.style.opacity = '1';
 
     // Auto-flip after a short pause for drama
+    document.getElementById('giftBanner').classList.remove('visible');
     setTimeout(() => {
       document.getElementById('cardFlipper').classList.add('flipped');
       isFlipped = true;
+      // Show gift banner after flip animation completes (~850ms)
+      setTimeout(() => {
+        document.getElementById('giftBanner').classList.add('visible');
+      }, 950);
     }, 600);
 
     document.getElementById('resultSection').scrollIntoView({behavior:'smooth',block:'center'});
@@ -393,6 +515,9 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox
 
 function resetOracle(){
   document.getElementById('resultSection').classList.remove('visible');
+  document.getElementById('giftBanner').classList.remove('visible');
+  // Show oracle instruction again
+  document.querySelector('.oracle-instruction').style.display = '';
   isFlipped = false;
   currentNum = null;
   document.getElementById('cardFlipper').classList.remove('flipped');
